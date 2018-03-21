@@ -41,7 +41,9 @@
         <div class="progress-wrapper">
           <span class="time time-l">{{format(currentTime)}}</span>
           <div class="progress-bar-wrapper">
-            <progress-bar></progress-bar>
+            <progress-bar ref="progressBar" :percent="percent" @percentChange="onProgressBarChange"
+            @percentChaning="onProgressBarChanging"
+            ></progress-bar>
           </div>
           <span class="time time-r">{{format(currentSong.duration)}}</span>
         </div>
@@ -167,7 +169,7 @@ export default {
       }
       if (this.playlist.length === 1) {
         this.loop()
-          return
+        return
       } else {
         let index = this.currentIndex + 1
         if (index === this.playlist.length) {
@@ -244,6 +246,13 @@ export default {
       })
       this.setCurrentIndex(index)
     },
+    onProgressBarChange(percent) {
+      const currentTime = this.currentSong.duration * percent
+      this.currentTime = this.$refs.audio.currentTime = currentTime
+    },
+    onProgressBarChanging(percent) {
+      this.currentTime = this.currentSong.duration * percent
+    },
     ...mapMutations({
       setFullScreen: 'SET_FULL_SCREEN',
       setCurrentIndex: 'SET_CURRENT_INDEX',
@@ -282,6 +291,7 @@ export default {
         }
       }
     }
+
   },
   components: {
     ProgressBar,
