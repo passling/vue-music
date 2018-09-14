@@ -2,7 +2,7 @@
   <div class="player" v-show="playlist.length>0">
     <div class="normal-player" v-show="fullScreen">
       <div class="background" >
-        <img src="" alt="" width="100%" height="100%" :src="currentSong.image">
+        <img  alt="" width="100%" height="100%" :src="currentSong.image">
       </div>
       <div class="top">
         <div class="back">
@@ -90,7 +90,7 @@
 </template>
 
 <script type="text/ecmascript-6">
-import {mapGetters, mapMutations, mapActions} from 'vuex'
+import {mapGetters, mapMutations} from 'vuex'
 import ProgressBar from 'base/progress-bar/progress-bar'
 import ProgressCircle from 'base/progress-circle/progress-circle'
 import { prefixStyle } from 'common/js/dom'
@@ -98,7 +98,7 @@ import {playMode} from 'common/js/config'
 import {shuffle} from 'common/js/util'
 
 const transform = prefixStyle('transform')
-const transitionDuration = prefixStyle('transitionDuration')
+// const transitionDuration = prefixStyle('transitionDuration')
 export default {
   name: 'player',
 
@@ -169,7 +169,6 @@ export default {
       }
       if (this.playlist.length === 1) {
         this.loop()
-        return
       } else {
         let index = this.currentIndex + 1
         if (index === this.playlist.length) {
@@ -184,7 +183,6 @@ export default {
       }
       if (this.playlist.length === 1) {
         this.loop()
-        return
       } else {
         let index = this.currentIndex - 1
         if (index === -1) {

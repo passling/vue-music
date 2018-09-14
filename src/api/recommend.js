@@ -13,7 +13,6 @@ export function getRecommend() {
 }
 
 export function getDiscList() {
-
   const url = debug ? '/api/getDiscList' : 'http://ustbhuangyi.com/music/api/getDiscList'
 
   const data = Object.assign({}, commonParams, {

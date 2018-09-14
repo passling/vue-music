@@ -112,4 +112,3 @@ export default {
           border-radius: 50%
           background: $color-theme
 </style>
-

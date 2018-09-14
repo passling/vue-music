@@ -1,4 +1,4 @@
-import { getSongsUrl,getVKey } from 'api/song'
+import { getSongsUrl } from 'api/song'
 import { ERR_OK } from 'api/config'
 export default class Song {
   constructor({id, mid, singer, name, album, duration, image, url}) {

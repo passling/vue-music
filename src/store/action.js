@@ -1,6 +1,6 @@
 import * as types from './mutation-type'
-import {playMode} from "../common/js/config"
-import {shuffle} from "../common/js/util"
+import {playMode} from '../common/js/config'
+import {shuffle} from '../common/js/util'
 function findIndex(list, song) {
   return list.findIndex(item => {
     return item.id === song.id

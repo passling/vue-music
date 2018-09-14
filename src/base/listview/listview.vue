@@ -7,10 +7,10 @@
            ref="listview"
   >
     <ul  >
-      <li v-for="group in data" class="list-group" ref="listGroup">
+      <li v-for="group in data" class="list-group" ref="listGroup" :key="group">
         <h2 class="list-group-title">{{group.title}}</h2>
         <ul>
-          <li @click="selectItem(item)" v-for="item in group.items" class="list-group-item">
+          <li @click="selectItem(item)" v-for="item in group.items" class="list-group-item" :key="item">
             <img v-lazy="item.avatar" alt="" class="avatar">
             <span class="name">{{item.name}}</span>
           </li>
@@ -20,7 +20,9 @@
     <div class="list-shortcut" @touchstart.stop.prevent="onShortcutTouchStart" @touchmove.stop.prevent="onshortcutTouchMove" @touchend.stop>
       <ul>
         <li v-for="(item, index) in shortcutList" class="item" :data-index="index"
-        :class="{'current':currentIndex ===index}">{{item}}</li>
+        :class="{'current':currentIndex ===index}"
+        :key="index"
+        >{{item}}</li>
       </ul>
     </div>
     <div class="list-fixed" ref="fixed" v-show="fixedTitle">
@@ -32,8 +34,7 @@
 
 <script type="text/ecmascript-6">
 import Scroll from '../scroll/scroll'
-import {getData} from "../../common/js/dom";
-
+import {getData} from '../../common/js/dom'
 
 const ANCHOR_HEIGHT = 18
 const TITLE_HEIGHT = 30
@@ -42,7 +43,9 @@ export default {
   props: {
     data: {
       type: Array,
-      default: []
+      default: function () {
+        return []
+      }
     }
   },
   computed: {
@@ -143,7 +146,7 @@ export default {
       this.currentIndex = listHeight.length - 2
     },
     diff(newVal) {
-      let fixedTop = (newVal > 0 && newVal < TITLE_HEIGHT) ? newVal - TITLE_HEIGHT : 0;
+      let fixedTop = (newVal > 0 && newVal < TITLE_HEIGHT) ? newVal - TITLE_HEIGHT : 0
       if (this.fixedTop === fixedTop) {
         return
       }
