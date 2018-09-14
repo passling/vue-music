@@ -4,7 +4,7 @@
       <div>
         <div class="slider-wrapper"  v-if="recommends.length">
           <slider>
-            <div v-for="item in recommends" :key="item">
+            <div v-for="(item, index) in recommends" :key="index">
               <a :href="item.linkUrl">
                 <img :src="item.picUrl" alt="" @load="loadImage">
               </a>
@@ -14,7 +14,7 @@
         <div class="recommend-list">
           <h1 class="list-title">热门歌单推荐</h1>
           <ul>
-            <li v-for="item in discList" class="item" :key="item">
+            <li v-for="(item, index) in discList" class="item" :key="index">
               <div class="icon">
                 <img v-lazy="item.imgurl" alt="" width="60" height="60">
               </div>
